@@ -1,0 +1,67 @@
+{
+  "path_id": "analyze_paper_challenges",
+  "query_template": "分析 {PAPER} 的技术原理和部署挑战",
+  "entity_types": ["PAPER", "ASPECT"],
+  "use_count": 0,
+  "avg_success_rate": 1.0,
+  "nodes": [
+    {
+      "node_id": "node_1",
+      "intent_template": "搜索 {PAPER} 论文",
+      "query_template": "{PAPER} 论文是什么？主要提出了什么技术？",
+      "tool_name": "web_search",
+      "tool_args_template": {"query": "{PAPER} paper technical overview"}
+    },
+    {
+      "node_id": "node_2",
+      "intent_template": "获取 {PAPER} 的核心算法",
+      "query_template": "{PAPER} 的核心算法和关键技术创新是什么？",
+      "tool_name": "knowledge_base",
+      "tool_args_template": {"query": "{PAPER} core algorithm innovation"}
+    },
+    {
+      "node_id": "node_3",
+      "intent_template": "分析 {PAPER} 的部署挑战",
+      "query_template": "{PAPER} 在实际部署中面临哪些挑战？",
+      "tool_name": "web_search",
+      "tool_args_template": {"query": "{PAPER} deployment challenges limitations"}
+    },
+    {
+      "node_id": "node_4",
+      "intent_template": "对比 {PAPER} 与同类方案",
+      "query_template": "{PAPER} 与其他类似方案相比有什么优劣势？",
+      "tool_name": "web_search",
+      "tool_args_template": {"query": "{PAPER} comparison alternatives pros cons"}
+    }
+  ],
+  "edges": [
+    {
+      "source_id": "node_1",
+      "target_id": "node_2",
+      "dependency_type": "semantic",
+      "strength": 0.6,
+      "learned_count": 0
+    },
+    {
+      "source_id": "node_1",
+      "target_id": "node_3",
+      "dependency_type": "data",
+      "strength": 0.85,
+      "learned_count": 0
+    },
+    {
+      "source_id": "node_2",
+      "target_id": "node_3",
+      "dependency_type": "semantic",
+      "strength": 0.5,
+      "learned_count": 0
+    },
+    {
+      "source_id": "node_1",
+      "target_id": "node_4",
+      "dependency_type": "semantic",
+      "strength": 0.4,
+      "learned_count": 0
+    }
+  ]
+}
